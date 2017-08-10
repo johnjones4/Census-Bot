@@ -17,13 +17,13 @@ database.init()
       output: process.stdout
     });
     const askQuestion = () => {
-      rl.question('> ',(answer) => {
+      rl.question('> ',(statement) => {
         rl.pause();
         if (exitStrings.indexOf(answer.toLowerCase()) >= 0) {
           rl.close();
           process.exit(0);
         } else {
-          botEngine.processStatement(answer)
+          botEngine.processStatement(statement)
             .then((response) => {
               console.log(response);
               askQuestion();
@@ -40,4 +40,4 @@ database.init()
   .catch((err) => {
     console.error(err);
     process.exit(-1);
-  })
+  });
